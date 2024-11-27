@@ -26,3 +26,5 @@ Distributed under the MIT license. See [`LICENSE.txt`](LICENSE.txt) for more det
 - [DrakiaXYZ](https://github.com/DrakiaXYZ) for having multiple great mods to look at for examples
 - [Arys](https://github.com/Nympfonic) for being awesome
 - People in the SPT discord that gave opinions on various things
+
+## [Original Source Here](https://github.com/mpstark/SPT-PlayerEncumbranceBar)
