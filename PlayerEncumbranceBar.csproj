@@ -1,0 +1,91 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net471</TargetFramework>
+    <AssemblyName>PlayerEncumbranceBar</AssemblyName>
+    <Description>Adds a progress bar for your characters weight</Description>
+    <LangVersion>7.3</LangVersion>
+    <Nullable>disable</Nullable>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TarkovDir Condition=" '$(TarkovDir)' == '' ">D:\SP-AKI\Server-3.10-DEVELOPMENT\</TarkovDir>
+    <TarkovDebugDir Condition=" '$(TarkovDebugDir)' == '' ">D:\SP-AKI\Server-3.10-DEVELOPMENT\</TarkovDebugDir>
+    <TarkovPluginsSPTDir>$(TarkovDir)BepInEx\plugins\spt\</TarkovPluginsSPTDir>
+    <TarkovManagedDir>$(TarkovDir)EscapeFromTarkov_Data\Managed\</TarkovManagedDir>
+    <TarkovBepInExCoreDir>$(TarkovDir)BepInEx\core\</TarkovBepInExCoreDir>
+    <PathToSPT>D:\SP-AKI\Server-3.10-DEVELOPMENT</PathToSPT>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(TarkovManagedDir)Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.multiplayer-hlapi.Runtime">
+      <HintPath>$(TarkovManagedDir)com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Comfort">
+      <HintPath>$(TarkovManagedDir)Comfort.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>$(TarkovManagedDir)DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween.Modules">
+      <HintPath>$(TarkovManagedDir)DOTween.Modules.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>$(TarkovManagedDir)Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Sirenix.Serialization">
+      <HintPath>$(TarkovManagedDir)Sirenix.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>$(TarkovManagedDir)Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(TarkovManagedDir)UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(TarkovManagedDir)UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>$(TarkovManagedDir)UnityEngine.ImageConversionModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>$(TarkovManagedDir)UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>$(TarkovManagedDir)UnityEngine.TextRenderingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>$(TarkovManagedDir)UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEnine.UIModule">
+      <HintPath>$(TarkovManagedDir)UnityEngine.UIModule.dll</HintPath>
+    </Reference>
+
+    <Reference Include="0Harmony">
+      <HintPath>$(TarkovBepInExCoreDir)0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="BepinEx">
+      <HintPath>$(TarkovBepInExCoreDir)BepInEx.dll</HintPath>
+    </Reference>
+    <Reference Include="BepinEx.Preloader">
+      <HintPath>$(TarkovBepInExCoreDir)BepInEx.Preloader.dll</HintPath>
+    </Reference>
+
+    <Reference Include="spt-reflection">
+      <HintPath>$(TarkovPluginsSPTDir)spt-reflection.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec
+            Command='if "$(ConfigurationName)" == "Debug" (
+      xcopy /F /Y "$(TargetPath)" "$(PathToSPT)\BepInEx\plugins\"
+    ) else if "$(ConfigurationName)" == "Release" (
+      xcopy /F /Y "$(TargetPath)" "D:\SP-AKI\Server-3.10-DEVELOPMENT\BepInEx\plugins\PlayerEncumbranceBar\"
+    )' />
+  </Target>
+
+</Project>
